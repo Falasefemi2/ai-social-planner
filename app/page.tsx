@@ -31,11 +31,49 @@ import { BorderBeam } from "@/components/magicui/border-beam"
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import { DashboardIcon } from "@radix-ui/react-icons"
 import Image from "next/image"
+import { auth, currentUser } from "@clerk/nextjs/server"
+import { db } from "./db"
+import { User } from "./db/schema"
+import { sql } from "drizzle-orm"
 
 
 
 
-export default function HomPage() {
+export default async function HomPage() {
+  const user = await currentUser();
+  const { userId } = auth();
+
+  if (user && userId) {
+    try {
+      const newUser = await db.insert(User).values({
+        id: userId,
+        email: user.emailAddresses[0]?.emailAddress || "", // Use the first email address
+        profileImageUrl: user.imageUrl || "",
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+        .onConflictDoUpdate({
+          target: User.id,
+          set: {
+            email: sql`${user.emailAddresses[0]?.emailAddress || null}`, // Handle null email
+            profileImageUrl: sql`${user.imageUrl}`,
+            firstName: sql`${user.firstName}`,
+            lastName: sql`${user.lastName}`,
+            updatedAt: sql`CURRENT_TIMESTAMP`,
+          },
+        })
+        .returning();
+
+      console.log("User created or updated:", newUser[0]);
+    } catch (error) {
+      console.error("Error creating user in database:", error);
+    }
+  }
+
+
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
       <header className="sticky top-0 z-40 w-full border-b bg-background">
