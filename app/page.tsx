@@ -28,6 +28,9 @@ import {
 import { ModeToggle } from "@/components/mode-toggle"
 import TypingAnimation from "@/components/magicui/typing-animation"
 import { BorderBeam } from "@/components/magicui/border-beam"
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+
+
 
 
 export default function HomPage() {
@@ -82,9 +85,16 @@ export default function HomPage() {
                 </SheetContent>
               </Sheet>
               <ModeToggle />
-              <Button variant="outline" className="px-4 py-2 text-base font-semibold hidden sm:inline-flex">
-                Sign In
-              </Button>
+              <div className="gap-4"></div>
+              <SignedIn>
+                {/* Mount the UserButton component */}
+                <UserButton />
+              </SignedIn>
+              <div className="gap-4"></div>
+              <SignedOut>
+                {/* Signed out users get sign in button */}
+                <SignInButton />
+              </SignedOut>
             </nav>
           </div>
         </div>
