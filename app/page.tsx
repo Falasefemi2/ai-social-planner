@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link"
-import { Calendar, Home, Menu } from "lucide-react"
+import { Calendar, Home, Menu, PiggyBank } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -30,6 +30,7 @@ import TypingAnimation from "@/components/magicui/typing-animation"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import { DashboardIcon } from "@radix-ui/react-icons"
+import Image from "next/image"
 
 
 
@@ -56,7 +57,9 @@ export default function HomPage() {
                 </SheetTrigger>
                 <SheetContent side="left">
                   <SheetHeader>
-                    <SheetTitle>LOGO</SheetTitle>
+                    <SheetTitle>
+                      <Image src="/logo.svg" alt="logo" width={64} height={64} />
+                    </SheetTitle>
                   </SheetHeader>
                   <nav className="flex flex-col gap-4 mt-4">
                     <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
@@ -70,6 +73,10 @@ export default function HomPage() {
                     <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
                       <DashboardIcon className="h-5 w-5" />
                       Dashboard
+                    </Link>
+                    <Link href="/pricing" className="flex items-center gap-2 text-lg font-semibold">
+                      <PiggyBank className="h-5 w-5" />
+                      Pricing
                     </Link>
                   </nav>
                 </SheetContent>
@@ -135,6 +142,18 @@ export default function HomPage() {
               </TooltipTrigger>
               <TooltipContent side="right">Dashboard</TooltipContent>
             </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="/pricing"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <PiggyBank className="h-5 w-5" />
+                  <span className="sr-only">Pricing</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Pricing</TooltipContent>
+            </Tooltip>
           </TooltipProvider>
         </nav>
 
@@ -153,7 +172,9 @@ export default function HomPage() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button size="lg">Get Started</Button>
+                <Button asChild size="lg">
+                  <Link href="/dashboard">Get Started</Link>
+                </Button>
                 <Button variant="outline" size="lg">Learn More</Button>
               </div>
             </div>

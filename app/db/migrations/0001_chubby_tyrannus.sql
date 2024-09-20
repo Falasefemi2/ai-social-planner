@@ -1,0 +1,1 @@
+ALTER TABLE "ai_aioutput" ALTER COLUMN "user_id" SET DATA TYPE varchar(36);
