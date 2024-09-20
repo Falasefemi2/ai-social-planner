@@ -33,7 +33,6 @@ import { BorderBeam } from "@/components/magicui/border-beam"
 export default function HomPage() {
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
-      {/* <Meteors number={30} /> */}
       <header className="sticky top-0 z-40 w-full border-b bg-background">
         <div className="container mx-auto flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
           <div className="flex gap-6 md:gap-10">
