@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link"
-import { Calendar, Home, Menu, MessageSquare, Settings, Users } from "lucide-react"
+import { Calendar, Home, Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -29,6 +29,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import TypingAnimation from "@/components/magicui/typing-animation"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+import { DashboardIcon } from "@radix-ui/react-icons"
 
 
 
@@ -55,32 +56,21 @@ export default function HomPage() {
                 </SheetTrigger>
                 <SheetContent side="left">
                   <SheetHeader>
-                    <SheetTitle>Menu</SheetTitle>
+                    <SheetTitle>LOGO</SheetTitle>
                   </SheetHeader>
                   <nav className="flex flex-col gap-4 mt-4">
-                    <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
+                    <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
                       <Home className="h-5 w-5" />
                       Home
                     </Link>
-                    <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
+                    <Link href="/calender" className="flex items-center gap-2 text-lg font-semibold">
                       <Calendar className="h-5 w-5" />
                       Calendar
                     </Link>
-                    <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-                      <Users className="h-5 w-5" />
-                      Friends
+                    <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
+                      <DashboardIcon className="h-5 w-5" />
+                      Dashboard
                     </Link>
-                    <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-                      <MessageSquare className="h-5 w-5" />
-                      Messages
-                    </Link>
-                    <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-                      <Settings className="h-5 w-5" />
-                      Settings
-                    </Link>
-                    <Button variant="outline" className="w-full justify-start text-left text-lg font-semibold">
-                      Sign In
-                    </Button>
                   </nav>
                 </SheetContent>
               </Sheet>
@@ -112,7 +102,7 @@ export default function HomPage() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Home className="h-5 w-5" />
@@ -124,7 +114,7 @@ export default function HomPage() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/calender"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Calendar className="h-5 w-5" />
@@ -136,45 +126,18 @@ export default function HomPage() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/dashboard"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <Users className="h-5 w-5" />
-                  <span className="sr-only">Friends</span>
+                  <DashboardIcon className="h-5 w-5" />
+                  <span className="sr-only">Dashboard</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Friends</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <MessageSquare className="h-5 w-5" />
-                  <span className="sr-only">Messages</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Messages</TooltipContent>
+              <TooltipContent side="right">Dashboard</TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </nav>
-        <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Settings className="h-5 w-5" />
-                  <span className="sr-only">Settings</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Settings</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </nav>
+
       </aside>
       <main className="flex-1 sm:pl-14">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
