@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils";
 import { CreditCard, History, WandSparkles } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from 'react';
 
 const menuList = [
     {
-        name: "Magic Tools",
+        name: "Content",
         icon: WandSparkles,
         path: "/dashboard",
     },
@@ -26,6 +27,29 @@ const menuList = [
 
 export const Sidebar = () => {
     const path = usePathname();
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
+        };
+
+        // Run the check on component mount
+        handleResize();
+
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    if (isMobile) return null; // Hide Sidebar on mobile
+
+
 
     console.log("path", path);
     return (

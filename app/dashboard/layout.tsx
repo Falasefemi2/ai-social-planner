@@ -5,9 +5,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     return (
         <div className="flex h-screen">
             <Sidebar />
-            <div className="flex-1 flex flex-col"> {/* {{ edit_4 }} */}
+            <div className="flex-1 flex flex-col">
                 <Navbar />
-                <div className="flex-1 p-5"> {/* {{ edit_7 }} */}
+                <div className="flex-1 p-5">
                     {children}
                 </div>
             </div>
