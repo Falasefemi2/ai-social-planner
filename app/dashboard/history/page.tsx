@@ -50,7 +50,7 @@ export default async function HistoryPage() {
                                 </TableRow>
                             ))
                             : (
-                                <p className="flex items-center justify-center font-bold text-2xl">No history available</p>
+                                <p className="font-bold text-xl">No history available</p>
                             )}
                     </TableBody>
 
