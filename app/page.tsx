@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link"
-import { Calendar, Home, Menu, PiggyBank } from "lucide-react"
+import { Calendar, Home, Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -104,17 +104,9 @@ export default async function HomPage() {
                       <Home className="h-5 w-5" />
                       Home
                     </Link>
-                    <Link href="/calender" className="flex items-center gap-2 text-lg font-semibold">
-                      <Calendar className="h-5 w-5" />
-                      Calendar
-                    </Link>
                     <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
                       <DashboardIcon className="h-5 w-5" />
                       Dashboard
-                    </Link>
-                    <Link href="/pricing" className="flex items-center gap-2 text-lg font-semibold">
-                      <PiggyBank className="h-5 w-5" />
-                      Pricing
                     </Link>
                   </nav>
                 </SheetContent>
@@ -159,18 +151,6 @@ export default async function HomPage() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="/calender"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Calendar className="h-5 w-5" />
-                  <span className="sr-only">Calendar</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Calendar</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
                   href="/dashboard"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
@@ -179,18 +159,6 @@ export default async function HomPage() {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Dashboard</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/pricing"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <PiggyBank className="h-5 w-5" />
-                  <span className="sr-only">Pricing</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Pricing</TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </nav>

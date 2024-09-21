@@ -21,6 +21,8 @@ import { Loader } from "lucide-react"
 import { Editor } from "./_components/editor"
 import { chatSession } from "@/lib/gemini-ai"; // Import chatSession
 import { createDocument } from "@/app/action"
+import { toast } from "sonner"
+
 
 
 const formSchema = z.object({
@@ -60,35 +62,27 @@ export default function TemplateSlug({ params }: TemplateSlugProps) {
         const finalAIPrompt = JSON.stringify(values) + ", " + selectedPrompt;
 
         try {
-            // Log the values being submitted
-            console.log("Submitting values:", values); // Log form values
-
             // Generate content using AI
             const aiResult = await chatSession.sendMessage(finalAIPrompt);
             setAiResponse(aiResult.response.text());
 
-            // Save the document using the server action
             const docResult = await createDocument({
                 title: values.title,
                 templateUsed: selectedTemplate?.name || 'Unknown Template',
             });
 
-            // Check if docResult is defined and log its structure
-            console.log("Document save result:", docResult); // Log the result of createDocument
             if (docResult) {
                 if (docResult.success) {
-                    console.log("Document saved successfully:", docResult.data);
-                    // You can add user feedback here, e.g., a toast notification
+                    toast.success("CONTENT CREATED")
                 } else {
                     console.error("Failed to save document:", docResult.error);
-                    // You can add error feedback here
+                    toast.error("Try again!!!")
                 }
             } else {
                 console.error("docResult is undefined or null");
             }
         } catch (error) {
             console.error("Error in submission:", error);
-            // You can add error feedback here
         } finally {
             setIsLoading(false);
         }

@@ -7,6 +7,7 @@ import { contentTemplates } from "@/lib/content-templates";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 export const TemplateList = ({ searchInput }: { searchInput: string }) => {
     const [templateList, setTemplateList] = useState(contentTemplates);
@@ -41,9 +42,10 @@ export const TemplateList = ({ searchInput }: { searchInput: string }) => {
     }, [searchInput]);
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-5 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-5 mt-5 relative">
             {templateList.map((template) => (
-                <Card key={template.slug} className="w-full h-[200px]">
+                <Card key={template.slug} className="w-full h-[200px] relative overflow-hidden rounded-lg border bg-background md:shadow-xl">
+                    <BorderBeam size={250} duration={12} delay={9} />
                     <Link href={`/dashboard/${template.slug}`} className="block h-full">
                         <CardContent className="h-full flex flex-col justify-center items-center p-4">
                             <template.icon className="h-12 w-12" />

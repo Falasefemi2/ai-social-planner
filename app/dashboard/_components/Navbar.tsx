@@ -2,7 +2,7 @@
 
 "use client";
 import { ModeToggle } from "@/components/mode-toggle"
-import { Menu } from "lucide-react"
+import { Calendar, Menu } from "lucide-react"
 import { CreditCard, History, WandSparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -41,33 +41,39 @@ export const Navbar = () => {
     const path = usePathname();
 
     return (
-        <div className="flex items-center justify-end p-4">
-            <ModeToggle />
-            <div className="md:hidden">
-                <Sheet>
-                    <SheetTrigger asChild>
-                        <Menu className="h-8 w-8 ml-4 cursor-pointer" />
-                    </SheetTrigger>
-                    <SheetContent>
-                        <SheetHeader>
-                            <SheetTitle>LOGO</SheetTitle>
-                        </SheetHeader>
-                        {menuList.map((menu) => (
-                            <Link
-                                href={menu.path}
-                                key={menu.name}
-                                className={cn(
-                                    "flex gap-2 mb-2 p-3  cursor-pointer rounded-lg items-center",
-                                    path === menu.path && ""
-                                )}
-                            >
-                                <menu.icon className="h-6 w-6"></menu.icon>
-                                <h2 className="text-lg">{menu.name}</h2>
-                            </Link>
-                        ))}
-                    </SheetContent>
-                </Sheet>
+        <div className="flex items-center justify-between p-4">
+            <Link href="/dashboard" className="flex items-center space-x-2">
+                <Calendar className="h-6 w-6" />
+                <span className="inline-block font-bold">AI Social Planner</span>
+            </Link>
+            <div className="flex items-center justify-end">
+                <ModeToggle />
+                <div className="md:hidden">
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <Menu className="h-8 w-8 ml-4 cursor-pointer" />
+                        </SheetTrigger>
+                        <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle>LOGO</SheetTitle>
+                            </SheetHeader>
+                            {menuList.map((menu) => (
+                                <Link
+                                    href={menu.path}
+                                    key={menu.name}
+                                    className={cn(
+                                        "flex gap-2 mb-2 p-3  cursor-pointer rounded-lg items-center",
+                                        path === menu.path && ""
+                                    )}
+                                >
+                                    <menu.icon className="h-6 w-6"></menu.icon>
+                                    <h2 className="text-lg">{menu.name}</h2>
+                                </Link>
+                            ))}
+                        </SheetContent>
+                    </Sheet>
 
+                </div>
             </div>
         </div>
     )
