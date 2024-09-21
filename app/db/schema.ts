@@ -26,6 +26,7 @@ export const AIOutput = pgTable("aioutput", {
     .notNull()
     .references(() => User.id),
   title: text("title").notNull(),
+  description: text("description").notNull(),
   templateUsed: text("templateused").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });

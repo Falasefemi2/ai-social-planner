@@ -10,9 +10,14 @@ import { AIOutput } from "./db/schema";
 interface CreateDocInput {
   title: string;
   templateUsed: string;
+  description: string;
 }
 
-export async function createDocument({ title, templateUsed }: CreateDocInput) {
+export async function createDocument({
+  title,
+  templateUsed,
+  description,
+}: CreateDocInput) {
   try {
     const { userId } = auth();
 
@@ -28,6 +33,7 @@ export async function createDocument({ title, templateUsed }: CreateDocInput) {
         userId: userId,
         title: title,
         templateUsed: templateUsed,
+        description: description,
         createdAt: new Date(),
       })
       .returning();

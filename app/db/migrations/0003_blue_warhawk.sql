@@ -1,0 +1,1 @@
+ALTER TABLE "ai_aioutput" ADD COLUMN "description" text NOT NULL;

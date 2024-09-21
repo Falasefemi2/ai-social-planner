@@ -69,6 +69,7 @@ export default function TemplateSlug({ params }: TemplateSlugProps) {
             const docResult = await createDocument({
                 title: values.title,
                 templateUsed: selectedTemplate?.name || 'Unknown Template',
+                description: values.description
             });
 
             if (docResult) {
