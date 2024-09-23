@@ -28,5 +28,6 @@ export const AIOutput = pgTable("aioutput", {
   title: text("title").notNull(),
   description: text("description").notNull(),
   templateUsed: text("templateused").notNull(),
+  aiResponse: text("aiResponse").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });

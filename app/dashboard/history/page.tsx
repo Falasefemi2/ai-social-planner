@@ -32,6 +32,7 @@ export default async function HistoryPage() {
                             <TableHead>Template</TableHead>
                             <TableHead className="w-[250px]">Title</TableHead>
                             <TableHead>Description</TableHead>
+                            <TableHead>AI Response</TableHead>
                             <TableHead className="text-right">Created At</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -43,6 +44,9 @@ export default async function HistoryPage() {
                                     <TableCell className="w-[250px]">{history.title}</TableCell>
                                     <TableCell className="whitespace-pre-wrap">
                                         {history.description}
+                                    </TableCell>
+                                    <TableCell className="whitespace-pre-wrap">
+                                        {history.aiResponse}
                                     </TableCell>
                                     <TableCell className="text-right">
                                         {format(history.createdAt, "MM/dd/yyyy")}

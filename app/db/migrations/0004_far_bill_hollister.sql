@@ -1,0 +1,1 @@
+ALTER TABLE "ai_aioutput" ADD COLUMN "aiResponse" text NOT NULL;

@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 import { Loader } from "lucide-react"
 import { Editor } from "./_components/editor"
-import { chatSession } from "@/lib/gemini-ai"; // Import chatSession
+import { chatSession } from "@/lib/gemini-ai";
 import { createDocument } from "@/app/action"
 import { toast } from "sonner"
 
@@ -32,6 +32,9 @@ const formSchema = z.object({
     description: z.string().min(1, {
         message: "Description is required.",
     }),
+    // airesponse: z.string().min(1, {
+    //     message: "AI Response required"
+    // })
 });
 
 interface TemplateSlugProps {
@@ -69,21 +72,19 @@ export default function TemplateSlug({ params }: TemplateSlugProps) {
             const docResult = await createDocument({
                 title: values.title,
                 templateUsed: selectedTemplate?.name || 'Unknown Template',
+                airesponse: aiResult.response.text(),
                 description: values.description
             });
 
-            if (docResult) {
-                if (docResult.success) {
-                    toast.success("CONTENT CREATED")
-                } else {
-                    console.error("Failed to save document:", docResult.error);
-                    toast.error("Try again!!!")
-                }
+            if (docResult.success) { // Check success directly
+                toast.success("CONTENT CREATED");
             } else {
-                console.error("docResult is undefined or null");
+                console.error("Failed to save document:", docResult.error);
+                toast.error(docResult.error); // Show the error message
             }
         } catch (error) {
             console.error("Error in submission:", error);
+            toast.error("Submission failed. Please try again."); // Show a user-friendly error
         } finally {
             setIsLoading(false);
         }
