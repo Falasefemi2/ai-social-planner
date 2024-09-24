@@ -1,11 +1,7 @@
 import { db } from "@/app/db";
 import { AIOutput } from "@/app/db/schema";
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
-// import { format } from "date-fns";
-// import Link from "next/link";
 import HistoryTable from "./HitoryTable";
 
 

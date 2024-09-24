@@ -1,12 +1,8 @@
-"use client";
-
 import React from 'react';
-// import Link from 'next/link';
-// import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
-import { useRouter } from 'next/navigation';
+
 
 
 interface HistoryItem {
@@ -25,7 +21,7 @@ interface HistoryTableProps {
 
 
 const HistoryTable = ({ userHistory }: HistoryTableProps) => {
-    const router = useRouter();
+
 
     return (
         <Card className="w-full max-w-4xl">
@@ -48,8 +44,6 @@ const HistoryTable = ({ userHistory }: HistoryTableProps) => {
                             {userHistory.map((history) => (
                                 <TableRow
                                     key={history.id}
-                                    className="cursor-pointer"
-                                    onClick={() => router.push(`edit/${history.id}`)}
                                 >
                                     <TableCell>{history.templateUsed}</TableCell>
                                     <TableCell className="w-[250px]">{history.title}</TableCell>
