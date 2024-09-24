@@ -86,8 +86,8 @@ export async function POST(req: Request) {
       customer: customerStripeId,
       line_items,
       mode: "payment",
-      success_url: `https://ai-social-planner-9wbo.vercel.app//dashboard/`,
-      cancel_url: `https://ai-social-planner-9wbo.vercel.app/`,
+      success_url: `https://ai-social-planner-9wbo.vercel.app/dashboard`,
+      cancel_url: `https://ai-social-planner-9wbo.vercel.app`,
       metadata: {
         userId: userId,
       },
@@ -95,7 +95,18 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error("Error in POST /api/create-checkout-session:", error);
+    console.error(
+      "Error in POST /api/create-checkout-session:",
+      error as Error
+    );
+    console.error(
+      "Error details:",
+      (error as Error).message,
+      (error as Error).stack
+    );
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
+// success_url: `https://ai-social-planner-9wbo.vercel.app//dashboard/`,
+// cancel_url: `https://ai-social-planner-9wbo.vercel.app/`,
