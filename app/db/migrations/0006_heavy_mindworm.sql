@@ -1,0 +1,1 @@
+ALTER TABLE "ai_users" ADD COLUMN "totalCredit" numeric(10, 2) DEFAULT '10000';
